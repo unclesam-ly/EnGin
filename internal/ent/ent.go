@@ -3,6 +3,7 @@
 package ent
 
 import (
+	"EnGin/internal/ent/role"
 	"EnGin/internal/ent/user"
 	"context"
 	"errors"
@@ -73,6 +74,7 @@ var (
 func checkColumn(t, c string) error {
 	initCheck.Do(func() {
 		columnCheck = sql.NewColumnCheck(map[string]func(string) bool{
+			role.Table: role.ValidColumn,
 			user.Table: user.ValidColumn,
 		})
 	})

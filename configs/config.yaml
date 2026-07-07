@@ -29,3 +29,9 @@ jwt:
     refresh_secret: "3676f2d0e99f294aab75997e16340370"
     access_expire: 2   # 小时
     refresh_expire: 168 # 小时（7天）
+
+# Redis 缓存配置
+redis:
+    addr: "127.0.0.1:6379"  # Redis 连接地址
+    password: "wangchan5"            # Redis 密码 (没有则为空)
+    db: 0                   # 数据库编号

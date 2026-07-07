@@ -20,6 +20,13 @@ var serverCmd = &cobra.Command{
 		}
 		defer db.Close()
 
+		// 初始化 Redis
+		err = db.InitRedis(global.Config.Redis.Addr, global.Config.Redis.Password, global.Config.Redis.Db)
+		if err != nil {
+			global.Log.Fatal("初始化 Redis 失败", zap.Error(err))
+		}
+		defer db.CloseRedis()
+
 		// 初始化 Casbin（会自动连接数据库并在数据库中建立 casbin_rules 表）
 		err = db.InitCasbin()
 		if err != nil {

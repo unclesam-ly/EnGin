@@ -12,6 +12,7 @@ type Config struct {
 	Database DatabaseConfig `mapstructure:"database" yaml:"database"`
 	Logger   LoggerConfig   `mapstructure:"logger" yaml:"logger"`
 	Jwt      JwtConfig      `mapstructure:"logger" yaml:"jwt"`
+	Redis    RedisConfig    `mapstructure:"redis" yaml:"redis"`
 }
 
 // LoadConfig 读取并解析配置文件

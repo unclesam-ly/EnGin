@@ -3,6 +3,7 @@
 package ent
 
 import (
+	"EnGin/internal/ent/role"
 	"EnGin/internal/ent/schema"
 	"EnGin/internal/ent/user"
 	"time"
@@ -12,6 +13,16 @@ import (
 // (default values, validators, hooks and policies) and stitches it
 // to their package variables.
 func init() {
+	roleFields := schema.Role{}.Fields()
+	_ = roleFields
+	// roleDescCode is the schema descriptor for code field.
+	roleDescCode := roleFields[0].Descriptor()
+	// role.CodeValidator is a validator for the "code" field. It is called by the builders before save.
+	role.CodeValidator = roleDescCode.Validators[0].(func(string) error)
+	// roleDescName is the schema descriptor for name field.
+	roleDescName := roleFields[1].Descriptor()
+	// role.NameValidator is a validator for the "name" field. It is called by the builders before save.
+	role.NameValidator = roleDescName.Validators[0].(func(string) error)
 	userMixin := schema.User{}.Mixin()
 	userMixinFields0 := userMixin[0].Fields()
 	_ = userMixinFields0
