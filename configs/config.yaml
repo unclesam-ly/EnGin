@@ -4,6 +4,9 @@
 server:
     port: 8080            # 服务监听的端口
     mode: "release"       # 运行模式：debug (开发模式，带控制台彩色日志) / release (生产模式，只输出 JSON 日志)
+    version: 2.0.4
+    allow_origins:
+        - http://localhost:3000
 
 database:
     driver: "postgres"    # 驱动，支持 mysql 或 postgres
