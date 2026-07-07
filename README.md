@@ -9,7 +9,9 @@
 A production-ready Go backend project scaffolding based on **Ent ORM + Gin + Cobra**, out of the box.
 
 ### Features
-* **ORM**: [Ent](https://entgo.io/) - An entity framework for Go. Strongly-typed, code-generated schema definitions, automatic migration, and clean graph queries.
+
+* **ORM**: [Ent](https://entgo.io/) - An entity framework for Go. Strongly-typed, code-generated schema definitions,
+  automatic migration, and clean graph queries.
 * **Router**: [Gin](https://github.com/gin-gonic/gin) - High-performance HTTP routing.
 * **CLI Command**: [Cobra](https://github.com/spf13/cobra) - Rich CLI subcommands (`server`, `migrate`, `user`, `gen`).
 * **Configurations**: [Viper](https://github.com/spf13/viper) - YAML configuration with hot-reloading support.
@@ -53,28 +55,33 @@ EnGin/
 ### Getting Started
 
 #### Prerequisites
+
 * Go >= 1.25
 * MySQL or PostgreSQL
 * Redis (Optional, needed for token blacklist verification)
 
 #### 1. Setup Configuration
+
 Edit `configs/config.yaml` to fill in database details:
+
 ```yaml
 database:
-  driver: "postgres"     # postgres or mysql
-  host: "127.0.0.1"
-  port: 5432
-  user: "postgres"
-  password: "your_password"
-  dbname: "engin_db"
+    driver: "postgres"     # postgres or mysql
+    host: "127.0.0.1"
+    port: 5432
+    user: "postgres"
+    password: "your_password"
+    dbname: "engin_db"
 ```
 
 #### 2. Install Dependencies
+
 ```bash
 go mod tidy
 ```
 
 #### 3. Run Commands
+
 ```bash
 # Run migrations (creates tables and intermediate join tables)
 go run cmd/server/*.go migrate
@@ -93,9 +100,11 @@ go run cmd/server/*.go server
 基于 **Ent ORM + Gin + Cobra** 的开箱即用型 Go 后端项目脚手架。
 
 ### 项目特性
+
 * **ORM**：[Ent](https://entgo.io/) - 强类型、代码生成式的图结构实体框架，支持智能迁移与极简联表。
 * **Web 框架**：[Gin](https://github.com/gin-gonic/gin) - 高性能 HTTP 路由分发。
-* **命令行**：[Cobra](https://github.com/spf13/cobra) - 规范 of CLI 命令工具集（`server` 运行、`migrate` 迁移、`user` 管理、`gen` 生成）。
+* **命令行**：[Cobra](https://github.com/spf13/cobra) - 规范 of CLI 命令工具集（`server` 运行、`migrate` 迁移、`user` 管理、
+  `gen` 生成）。
 * **配置管理**：[Viper](https://github.com/spf13/viper) - 支持 YAML 映射与动态热加载。
 * **缓存与注销**：集成 Redis (go-redis/v9)，支持基于黑名单的 Token 安全注销。
 * **安全鉴权**：支持双 Token (Access Token & Refresh Token) 安全刷新机制。
@@ -136,28 +145,33 @@ EnGin/
 ### 快速开始
 
 #### 环境要求
+
 * Go >= 1.25
 * MySQL 或 PostgreSQL
 * Redis (可选，用于黑名单过滤)
 
 #### 1. 配置参数
+
 编辑 `configs/config.yaml` 填写对应数据库信息：
+
 ```yaml
 database:
-  driver: "postgres"     # mysql 或 postgres
-  host: "127.0.0.1"
-  port: 5432
-  user: "postgres"
-  password: "你的密码"
-  dbname: "engin_db"
+    driver: "postgres"     # mysql 或 postgres
+    host: "127.0.0.1"
+    port: 5432
+    user: "postgres"
+    password: "你的密码"
+    dbname: "engin_db"
 ```
 
 #### 2. 下载依赖
+
 ```bash
 go mod tidy
 ```
 
 #### 3. 运行指南
+
 ```bash
 # 自动生成数据库表（包括 M2M 中间表）
 go run cmd/server/*.go migrate
@@ -176,9 +190,11 @@ go run cmd/server/*.go server
 **Ent ORM + Gin + Cobra** に基づく、すぐに使えるプロダクション対応の Go バックエンドプロジェクトスケルトン（脚手架）です。
 
 ### 主な機能と特徴
+
 * **ORM**: [Ent](https://entgo.io/) - 強力な静的型付けコード生成型のグラフ構造 ORM。簡単なリレーション構築とマイグレーションをサポート。
 * **Web フレームワーク**: [Gin](https://github.com/gin-gonic/gin) - 高速な HTTP ルーティング。
-* **CLI コマンド**: [Cobra](https://github.com/spf13/cobra) - 構造化されたサブコマンド体系（`server`, `migrate`, `user`, `gen`）。
+* **CLI コマンド**: [Cobra](https://github.com/spf13/cobra) - 構造化されたサブコマンド体系（`server`, `migrate`, `user`,
+  `gen`）。
 * **設定管理**: [Viper](https://github.com/spf13/viper) - YAML 設定ファイルのマッピングとホットリロードのサポート。
 * **キャッシュ / ログアウト**: Redis (go-redis/v9) によるログアウト Token ブラックリスト管理。
 * **認証**: デュアルトークン (Access Token & Refresh Token) による安全な認証スキーム。
@@ -219,28 +235,33 @@ EnGin/
 ### クイックスタート
 
 #### 動作要件
+
 * Go >= 1.25
 * MySQL または PostgreSQL
 * Redis (オプション、ログアウトブラックリスト機能に必要)
 
 #### 1. 設定ファイルの編集
+
 `configs/config.yaml` のデータベース接続情報を設定します：
+
 ```yaml
 database:
-  driver: "postgres"     # mysql または postgres
-  host: "127.0.0.1"
-  port: 5432
-  user: "postgres"
-  password: "your_password"
-  dbname: "engin_db"
+    driver: "postgres"     # mysql または postgres
+    host: "127.0.0.1"
+    port: 5432
+    user: "postgres"
+    password: "your_password"
+    dbname: "engin_db"
 ```
 
 #### 2. 依存関係のインストール
+
 ```bash
 go mod tidy
 ```
 
 #### 3. コマンドの実行
+
 ```bash
 # マイグレーションを実行し、中間テーブルなどを自動生成
 go run cmd/server/*.go migrate
