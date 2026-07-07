@@ -22,3 +22,10 @@ logger:
     max_backups: 7             # 最多保留的旧日志文件个数
     max_age: 30                # 旧日志文件最长保留天数 (单位: 天)
     compress: true             # 是否对历史归档日志进行 gzip 压缩
+
+jwt:
+    issuer: "山姆叔叔"
+    access_secret: "django-insecure-pfgn+96(rq74los_7d#n8#b07+$23vnxy*#y^y=eu9&_1eqk$7"
+    refresh_secret: "3676f2d0e99f294aab75997e16340370"
+    access_expire: 2   # 小时
+    refresh_expire: 168 # 小时（7天）

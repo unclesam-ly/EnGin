@@ -11,6 +11,7 @@ type Config struct {
 	Server   ServerConfig   `mapstructure:"server" yaml:"server"`
 	Database DatabaseConfig `mapstructure:"database" yaml:"database"`
 	Logger   LoggerConfig   `mapstructure:"logger" yaml:"logger"`
+	Jwt      JwtConfig      `mapstructure:"logger" yaml:"jwt"`
 }
 
 // LoadConfig 读取并解析配置文件

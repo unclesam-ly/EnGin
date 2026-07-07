@@ -20,6 +20,12 @@ var serverCmd = &cobra.Command{
 		}
 		defer db.Close()
 
+		// 初始化 Casbin（会自动连接数据库并在数据库中建立 casbin_rules 表）
+		err = db.InitCasbin()
+		if err != nil {
+			global.Log.Fatal("初始化 Casbin 失败", zap.Error(err))
+		}
+
 		global.Log.Info("数据库初始化成功，正在启动 Web 服务...")
 		// 启动 Gin 服务
 		server.Run()
