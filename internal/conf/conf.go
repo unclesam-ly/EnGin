@@ -11,7 +11,7 @@ type Config struct {
 	Server   ServerConfig   `mapstructure:"server" yaml:"server"`
 	Database DatabaseConfig `mapstructure:"database" yaml:"database"`
 	Logger   LoggerConfig   `mapstructure:"logger" yaml:"logger"`
-	Jwt      JwtConfig      `mapstructure:"logger" yaml:"jwt"`
+	Jwt      JwtConfig      `mapstructure:"jwt" yaml:"jwt"`
 	Redis    RedisConfig    `mapstructure:"redis" yaml:"redis"`
 }
 

@@ -50,14 +50,14 @@ var userCreateCmd = &cobra.Command{
 
 		ctx := context.Background()
 
-		// 1. 尝试查询 admin 角色
+		// 尝试查询 admin 角色
 		adminRole, err := db.Client.Role.Query().
 			Where(role.CodeEQ("admin")).
 			Only(ctx)
 
 		if err != nil {
 			if ent.IsNotFound(err) {
-				// 2. 如果不存在 admin 角色，自动创建
+				// 如果不存在 admin 角色，自动创建
 				adminRole, err = db.Client.Role.Create().
 					SetCode("admin").
 					SetName("超级管理员").
@@ -75,11 +75,11 @@ var userCreateCmd = &cobra.Command{
 			}
 		}
 
-		// 3. 直接使用 db.Client 创建用户并挂载角色
+		// 直接使用 db.Client 创建用户并挂载角色
 		u, err := db.Client.User.Create().
 			SetUsername(username).
 			SetPassword(hashedPwd).
-			AddRoles(adminRole). // 💡 重点：挂载角色
+			AddRoles(adminRole).
 			Save(ctx)
 		if err != nil {
 			global.Log.Error("创建用户失败", zap.Error(err))

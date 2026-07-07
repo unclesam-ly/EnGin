@@ -9,4 +9,5 @@ func RegisterRoutes(r *gin.Engine) {
 	// 分组并调用子路由
 	g := r.Group("api/v1")
 	AuthRouter(g)
+	UserRouter(g)
 }

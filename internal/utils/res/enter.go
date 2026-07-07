@@ -61,7 +61,7 @@ func OkWithMsg(msg string, c *gin.Context) {
 	Ok(gin.H{}, Success, msg, c)
 }
 
-func OkWithList(list any, count int64, c *gin.Context) {
+func OkWithList(list any, count int, c *gin.Context) {
 	Ok(map[string]any{
 		"list":  list,
 		"count": count,

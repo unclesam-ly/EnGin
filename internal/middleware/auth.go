@@ -35,7 +35,7 @@ func Auth(c *gin.Context) {
 func AuthAdmin(c *gin.Context) {
 	accessToken := c.GetHeader("access_token")
 	if accessToken == "" {
-		res.Unauthorized("未携带 access_token", c)
+		res.Unauthorized("认证失败", c)
 		c.Abort()
 		return
 	}
@@ -47,7 +47,7 @@ func AuthAdmin(c *gin.Context) {
 		return
 	}
 
-	// 💡 预加载用户的关联角色列表 (WithRoles)
+	// 预加载用户的关联角色列表 (WithRoles)
 	ctx := c.Request.Context()
 	u, err := db.Client.User.Query().
 		Where(user.ID(int(claims.UserID))).
@@ -60,7 +60,7 @@ func AuthAdmin(c *gin.Context) {
 		return
 	}
 
-	// 💡 遍历用户的角色列表，检查是否有 "admin" 角色代码
+	// 遍历用户的角色列表，检查是否有 "admin" 角色代码
 	isAdmin := false
 	for _, role := range u.Edges.Roles {
 		if role.Code == "admin" {
