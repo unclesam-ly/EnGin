@@ -22,6 +22,7 @@ logs/
 
 # 配置文件（含敏感信息，仅本地保留）
 configs/config.yaml
+configs/casbin.conf
 
 # Go
 vendor/

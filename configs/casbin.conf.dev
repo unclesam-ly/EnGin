@@ -16,4 +16,4 @@ e = some(where (p.eft == allow))
 
 # Matchers
 [matchers]
-m = r.sub == "unclesam" || g(r.sub, p.sub) && keyMatch2(r.obj, p.obj) && regexMatch(r.act, p.act)
+m = r.sub == "your_admin_user" || g(r.sub, p.sub) && keyMatch2(r.obj, p.obj) && regexMatch(r.act, p.act)
