@@ -11,7 +11,7 @@ import (
 func AuthRouter(g *gin.RouterGroup) {
 	app := api.App.AuthApi
 
-	g.POST("login",
+	g.POST("/auth/login",
 		middleware.BindJsonMiddleware[auth_api.LoginRequest],
 		middleware.AuthRateLimit,
 		app.LoginView)
