@@ -24,6 +24,11 @@ func Init(driver string, dsn string) error {
 		return fmt.Errorf("打开数据库连接失败 [%s]: %w", driver, err)
 	}
 
+	// 立即 Ping 数据库，验证账号密码及数据库是否存在
+	if err := db.Ping(); err != nil {
+		return fmt.Errorf("无法连接至数据库 [%s]，请检查账号密码或数据库是否存在: %w", driver, err)
+	}
+
 	// 连接池设置
 	db.SetMaxIdleConns(10)
 	db.SetMaxOpenConns(100)

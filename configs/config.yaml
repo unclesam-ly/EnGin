@@ -2,16 +2,16 @@
 
 # Web 服务配置
 server:
-    port: 8080          # 服务监听的端口
+    port: 8080            # 服务监听的端口
     mode: "release"       # 运行模式：debug (开发模式，带控制台彩色日志) / release (生产模式，只输出 JSON 日志)
 
 database:
-  driver: "postgres"    # 驱动，支持 mysql 或 postgres
-  host: "127.0.0.1"     # 数据库主机地址
-  port: 5432            # 端口号：MySQL 默认 3306，PostgreSQL 默认 5432
-  user: "postgres"      # 用户名
-  password: "123456"    # 密码
-  dbname: "test_db"     # 数据库名
+    driver: "postgres"    # 驱动，支持 mysql 或 postgres
+    host: "127.0.0.1"     # 数据库主机地址
+    port: 5432            # 端口号：MySQL 默认 3306，PostgreSQL 默认 5432
+    user: "unclesam"      # 用户名
+    password: "wangchan"    # 密码
+    dbname: "test_db"     # 数据库名
 
 # Zap 日志配置
 logger:
