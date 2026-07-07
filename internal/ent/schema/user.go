@@ -27,6 +27,9 @@ func (User) Fields() []ent.Field {
 			NotEmpty(),
 		field.String("password").
 			Sensitive(),
+		field.String("nickname").
+			Optional().
+			MaxLen(64),
 		field.String("email").
 			Optional().
 			Match(regexp.MustCompile(`^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$`)), // 邮箱格式正则校验

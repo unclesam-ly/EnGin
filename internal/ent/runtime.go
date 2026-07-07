@@ -42,16 +42,20 @@ func init() {
 	userDescUsername := userFields[0].Descriptor()
 	// user.UsernameValidator is a validator for the "username" field. It is called by the builders before save.
 	user.UsernameValidator = userDescUsername.Validators[0].(func(string) error)
+	// userDescNickname is the schema descriptor for nickname field.
+	userDescNickname := userFields[2].Descriptor()
+	// user.NicknameValidator is a validator for the "nickname" field. It is called by the builders before save.
+	user.NicknameValidator = userDescNickname.Validators[0].(func(string) error)
 	// userDescEmail is the schema descriptor for email field.
-	userDescEmail := userFields[2].Descriptor()
+	userDescEmail := userFields[3].Descriptor()
 	// user.EmailValidator is a validator for the "email" field. It is called by the builders before save.
 	user.EmailValidator = userDescEmail.Validators[0].(func(string) error)
 	// userDescIP is the schema descriptor for ip field.
-	userDescIP := userFields[3].Descriptor()
+	userDescIP := userFields[4].Descriptor()
 	// user.IPValidator is a validator for the "ip" field. It is called by the builders before save.
 	user.IPValidator = userDescIP.Validators[0].(func(string) error)
 	// userDescAddr is the schema descriptor for addr field.
-	userDescAddr := userFields[4].Descriptor()
+	userDescAddr := userFields[5].Descriptor()
 	// user.AddrValidator is a validator for the "addr" field. It is called by the builders before save.
 	user.AddrValidator = userDescAddr.Validators[0].(func(string) error)
 }

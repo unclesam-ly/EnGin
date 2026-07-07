@@ -27,6 +27,7 @@ var (
 		{Name: "updated_at", Type: field.TypeTime},
 		{Name: "username", Type: field.TypeString, Unique: true},
 		{Name: "password", Type: field.TypeString},
+		{Name: "nickname", Type: field.TypeString, Nullable: true, Size: 64},
 		{Name: "email", Type: field.TypeString, Nullable: true},
 		{Name: "ip", Type: field.TypeString, Nullable: true},
 		{Name: "addr", Type: field.TypeString, Nullable: true, Size: 500},
