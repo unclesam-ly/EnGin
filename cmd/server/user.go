@@ -2,7 +2,10 @@ package main
 
 import (
 	"EnGin/internal/db"
+	"EnGin/internal/ent"
+	"EnGin/internal/ent/role"
 	"EnGin/internal/global"
+	"EnGin/internal/utils/pwd"
 	"bufio"
 	"context"
 	"fmt"
@@ -35,17 +38,48 @@ var userCreateCmd = &cobra.Command{
 		fmt.Print("请输入密码: ")
 		password, _ := reader.ReadString('\n')
 		password = strings.TrimSpace(password)
+		hashedPwd, err := pwd.GenerateFromPassword(password)
+		if err != nil {
+			fmt.Errorf("密码加密错误 %w", err)
+			return
+		}
 		if username == "" || password == "" {
 			fmt.Println("用户名和密码不能为空")
 			return
 		}
 
 		ctx := context.Background()
-		// 直接使用 db.Client 跨包调用并创建数据
+
+		// 1. 尝试查询 admin 角色
+		adminRole, err := db.Client.Role.Query().
+			Where(role.CodeEQ("admin")).
+			Only(ctx)
+
+		if err != nil {
+			if ent.IsNotFound(err) {
+				// 2. 如果不存在 admin 角色，自动创建
+				adminRole, err = db.Client.Role.Create().
+					SetCode("admin").
+					SetName("超级管理员").
+					Save(ctx)
+				if err != nil {
+					global.Log.Error("创建管理员角色失败", zap.Error(err))
+					fmt.Println("创建管理员角色失败: ", err.Error())
+					return
+				}
+				fmt.Println("👉 系统中未发现 admin 角色，已自动创建。")
+			} else {
+				global.Log.Error("查询角色失败", zap.Error(err))
+				fmt.Println("查询角色失败: ", err.Error())
+				return
+			}
+		}
+
+		// 3. 直接使用 db.Client 创建用户并挂载角色
 		u, err := db.Client.User.Create().
-			// 根据您的 schema 字段做适当的设定，如：
-			// SetUsername(username).
-			// SetPassword(password).
+			SetUsername(username).
+			SetPassword(hashedPwd).
+			AddRoles(adminRole). // 💡 重点：挂载角色
 			Save(ctx)
 		if err != nil {
 			global.Log.Error("创建用户失败", zap.Error(err))
@@ -53,7 +87,7 @@ var userCreateCmd = &cobra.Command{
 			return
 		}
 
-		fmt.Printf("✨ 用户创建成功！ID: %d, 用户名: %s\n", u.ID, username)
+		fmt.Printf("✨ 用户创建成功！ID: %d, 用户名: %s, 角色: admin\n", u.ID, username)
 	},
 }
 

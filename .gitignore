@@ -20,8 +20,8 @@ Thumbs.db
 logs/
 *.log
 
-# 配置文件（如有敏感信息）
-# configs/*.yaml
+# 配置文件（含敏感信息，仅本地保留）
+configs/config.yaml
 
 # Go
 vendor/
