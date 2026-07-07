@@ -3,8 +3,8 @@
 package ent
 
 import (
+	"EnGin/internal/ent/user"
 	"context"
-	"ent-scaffold/internal/ent/user"
 	"errors"
 	"fmt"
 	"reflect"

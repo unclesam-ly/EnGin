@@ -1,10 +1,10 @@
 package main
 
 import (
+	"EnGin/internal/db"
+	"EnGin/internal/global"
 	"bufio"
 	"context"
-	"ent-scaffold/internal/db"
-	"ent-scaffold/internal/global"
 	"fmt"
 	"os"
 	"strings"

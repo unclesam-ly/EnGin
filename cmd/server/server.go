@@ -1,9 +1,9 @@
 package main
 
 import (
-	"ent-scaffold/internal/db"
-	"ent-scaffold/internal/global"
-	"ent-scaffold/internal/server"
+	"EnGin/internal/db"
+	"EnGin/internal/global"
+	"EnGin/internal/server"
 
 	"github.com/spf13/cobra"
 	"go.uber.org/zap"

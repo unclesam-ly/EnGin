@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"time"
 
-	"ent-scaffold/internal/ent"
+	"EnGin/internal/ent"
 
 	entsql "entgo.io/ent/dialect/sql"
 

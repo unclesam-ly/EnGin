@@ -1,7 +1,7 @@
 package global
 
 import (
-	"ent-scaffold/internal/conf"
+	"EnGin/internal/conf"
 
 	"go.uber.org/zap"
 )

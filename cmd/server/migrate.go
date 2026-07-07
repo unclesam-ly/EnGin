@@ -1,9 +1,9 @@
 package main
 
 import (
+	"EnGin/internal/db"
+	"EnGin/internal/global"
 	"context"
-	"ent-scaffold/internal/db"
-	"ent-scaffold/internal/global"
 
 	"github.com/spf13/cobra"
 	"go.uber.org/zap"
@@ -25,7 +25,7 @@ var migrateCmd = &cobra.Command{
 		if err := db.Client.Schema.Create(ctx); err != nil {
 			global.Log.Fatal("Schema 迁移失败", zap.Error(err))
 		}
-		
+
 		global.Log.Info("数据库 Schema 迁移执行完毕！")
 	},
 }

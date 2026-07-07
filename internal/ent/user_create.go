@@ -3,8 +3,8 @@
 package ent
 
 import (
+	"EnGin/internal/ent/user"
 	"context"
-	"ent-scaffold/internal/ent/user"
 	"fmt"
 
 	"entgo.io/ent/dialect/sql/sqlgraph"

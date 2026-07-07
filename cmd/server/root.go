@@ -1,9 +1,9 @@
 package main
 
 import (
-	"ent-scaffold/internal/conf"
-	"ent-scaffold/internal/global"
-	"ent-scaffold/internal/logger"
+	"EnGin/internal/conf"
+	"EnGin/internal/global"
+	"EnGin/internal/logger"
 
 	"github.com/spf13/cobra"
 )
@@ -11,8 +11,8 @@ import (
 var cfgFile string
 
 var rootCmd = &cobra.Command{
-	Use:   "ent-scaffold",
-	Short: "ent-scaffold 命令行脚手架服务",
+	Use:   "EnGin",
+	Short: "EnGin 命令行脚手架服务",
 	PersistentPreRunE: func(cmd *cobra.Command, args []string) error {
 		cfg, err := conf.LoadConfig(cfgFile)
 		if err != nil {

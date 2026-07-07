@@ -1,7 +1,7 @@
 package logger
 
 import (
-	"ent-scaffold/internal/conf"
+	"EnGin/internal/conf"
 	"fmt"
 	"os"
 	"path"

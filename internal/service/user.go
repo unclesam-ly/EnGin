@@ -1,9 +1,9 @@
 package service
 
 import (
+	"EnGin/internal/db"
+	"EnGin/internal/ent"
 	"context"
-	"ent-scaffold/internal/db"
-	"ent-scaffold/internal/ent"
 )
 
 func CreateUser(ctx context.Context, username string) (*ent.User, error) {

@@ -1,4 +1,4 @@
-module ent-scaffold
+module EnGin
 
 go 1.25.0
 

@@ -3,9 +3,9 @@
 package ent
 
 import (
+	"EnGin/internal/ent/predicate"
+	"EnGin/internal/ent/user"
 	"context"
-	"ent-scaffold/internal/ent/predicate"
-	"ent-scaffold/internal/ent/user"
 	"errors"
 	"fmt"
 

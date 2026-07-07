@@ -16,7 +16,7 @@
 ## 项目结构
 
 ```
-ent-scaffold/
+EnGin/
 ├── cmd/server/              # CLI 入口与子命令
 │   ├── main.go              # 程序入口
 │   ├── root.go              # 根命令（加载配置、初始化日志）

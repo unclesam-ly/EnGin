@@ -9,9 +9,9 @@ import (
 	"log"
 	"reflect"
 
-	"ent-scaffold/internal/ent/migrate"
+	"EnGin/internal/ent/migrate"
 
-	"ent-scaffold/internal/ent/user"
+	"EnGin/internal/ent/user"
 
 	"entgo.io/ent"
 	"entgo.io/ent/dialect"

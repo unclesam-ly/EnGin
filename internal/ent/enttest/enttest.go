@@ -5,11 +5,11 @@ package enttest
 import (
 	"context"
 
-	"ent-scaffold/internal/ent"
+	"EnGin/internal/ent"
 	// required by schema hooks.
-	_ "ent-scaffold/internal/ent/runtime"
+	_ "EnGin/internal/ent/runtime"
 
-	"ent-scaffold/internal/ent/migrate"
+	"EnGin/internal/ent/migrate"
 
 	"entgo.io/ent/dialect/sql/schema"
 )

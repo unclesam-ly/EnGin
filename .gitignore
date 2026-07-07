@@ -1,5 +1,5 @@
 # 编译产物
-/ent-scaffold
+/EnGin
 /cmd/server/server
 *.exe
 *.test

@@ -3,8 +3,8 @@
 package hook
 
 import (
+	"EnGin/internal/ent"
 	"context"
-	"ent-scaffold/internal/ent"
 	"fmt"
 )
 

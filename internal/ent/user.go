@@ -3,7 +3,7 @@
 package ent
 
 import (
-	"ent-scaffold/internal/ent/user"
+	"EnGin/internal/ent/user"
 	"fmt"
 	"strings"
 

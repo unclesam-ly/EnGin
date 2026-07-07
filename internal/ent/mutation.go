@@ -3,8 +3,8 @@
 package ent
 
 import (
+	"EnGin/internal/ent/predicate"
 	"context"
-	"ent-scaffold/internal/ent/predicate"
 	"errors"
 	"fmt"
 	"sync"

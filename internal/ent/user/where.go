@@ -3,7 +3,7 @@
 package user
 
 import (
-	"ent-scaffold/internal/ent/predicate"
+	"EnGin/internal/ent/predicate"
 
 	"entgo.io/ent/dialect/sql"
 )

@@ -1,8 +1,8 @@
 package server
 
 import (
-	"ent-scaffold/internal/global"
-	"ent-scaffold/internal/handler"
+	"EnGin/internal/global"
+	"EnGin/internal/handler"
 	"fmt"
 
 	"github.com/gin-gonic/gin"
