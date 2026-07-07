@@ -14,7 +14,7 @@ var serverCmd = &cobra.Command{
 	Short: "启动 Web API 接口服务",
 	Run: func(cmd *cobra.Command, args []string) {
 		// 初始化 db 包
-		err := db.Init(global.Config.Database.Driver, global.Config.Database.Dsn())
+		err := db.InitDB(global.Config.Database.Driver, global.Config.Database.Dsn())
 		if err != nil {
 			global.Log.Fatal("数据库连接失败", zap.Error(err))
 		}
@@ -33,7 +33,6 @@ var serverCmd = &cobra.Command{
 			global.Log.Fatal("初始化 Casbin 失败", zap.Error(err))
 		}
 
-		global.Log.Info("数据库初始化成功，正在启动 Web 服务...")
 		// 启动 Gin 服务
 		server.Run()
 	},

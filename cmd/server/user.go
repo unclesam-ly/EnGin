@@ -25,7 +25,7 @@ var userCreateCmd = &cobra.Command{
 	Use:   "create",
 	Short: "交互式创建一个管理员用户",
 	Run: func(cmd *cobra.Command, args []string) {
-		err := db.Init(global.Config.Database.Driver, global.Config.Database.Dsn())
+		err := db.InitDB(global.Config.Database.Driver, global.Config.Database.Dsn())
 		if err != nil {
 			global.Log.Fatal("连接数据库失败", zap.Error(err))
 		}

@@ -1,6 +1,7 @@
 package db
 
 import (
+	"EnGin/internal/global"
 	"database/sql"
 	"fmt"
 	"time"
@@ -16,8 +17,8 @@ import (
 // Client 跨包调用的统一数据库客户端实例
 var Client *ent.Client
 
-// Init 根据配置初始化数据库连接
-func Init(driver string, dsn string) error {
+// InitDB 根据配置初始化数据库连接
+func InitDB(driver string, dsn string) error {
 	// 先创建标准 sql.DB 以配置连接池
 	db, err := sql.Open(driver, dsn)
 	if err != nil {
@@ -37,6 +38,8 @@ func Init(driver string, dsn string) error {
 	// 将 sql.DB 包装为 ent 客户端
 	drv := entsql.OpenDB(driver, db)
 	Client = ent.NewClient(ent.Driver(drv))
+	global.Log.Info("数据库初始化成功")
+
 	return nil
 }
 

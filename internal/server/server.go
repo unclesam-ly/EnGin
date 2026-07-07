@@ -21,7 +21,7 @@ func Run() {
 	// 注册路由
 	router.RegisterRoutes(r)
 	port := global.Config.Server.Port
-	global.Log.Info(fmt.Sprintf("Server is running on port %d", port))
+	global.Log.Info(fmt.Sprintf("服务运行在端口 %d", port))
 	if err := r.Run(fmt.Sprintf(":%d", port)); err != nil {
 		global.Log.Fatal("Web 服务启动失败", zap.Error(err))
 	}
