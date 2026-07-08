@@ -17,7 +17,7 @@ type Role struct {
 	// ID of the ent.
 	ID int `json:"id,omitempty"`
 	// Code holds the value of the "code" field.
-	Code string `json:"code,omitempty"`
+	Code int `json:"code,omitempty"`
 	// Name holds the value of the "name" field.
 	Name string `json:"name,omitempty"`
 	// Edges holds the relations/edges for other nodes in the graph.
@@ -49,9 +49,9 @@ func (*Role) scanValues(columns []string) ([]any, error) {
 	values := make([]any, len(columns))
 	for i := range columns {
 		switch columns[i] {
-		case role.FieldID:
+		case role.FieldID, role.FieldCode:
 			values[i] = new(sql.NullInt64)
-		case role.FieldCode, role.FieldName:
+		case role.FieldName:
 			values[i] = new(sql.NullString)
 		default:
 			values[i] = new(sql.UnknownType)
@@ -75,10 +75,10 @@ func (_m *Role) assignValues(columns []string, values []any) error {
 			}
 			_m.ID = int(value.Int64)
 		case role.FieldCode:
-			if value, ok := values[i].(*sql.NullString); !ok {
+			if value, ok := values[i].(*sql.NullInt64); !ok {
 				return fmt.Errorf("unexpected type %T for field code", values[i])
 			} else if value.Valid {
-				_m.Code = value.String
+				_m.Code = int(value.Int64)
 			}
 		case role.FieldName:
 			if value, ok := values[i].(*sql.NullString); !ok {
@@ -128,7 +128,7 @@ func (_m *Role) String() string {
 	builder.WriteString("Role(")
 	builder.WriteString(fmt.Sprintf("id=%v, ", _m.ID))
 	builder.WriteString("code=")
-	builder.WriteString(_m.Code)
+	builder.WriteString(fmt.Sprintf("%v", _m.Code))
 	builder.WriteString(", ")
 	builder.WriteString("name=")
 	builder.WriteString(_m.Name)

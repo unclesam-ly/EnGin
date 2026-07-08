@@ -11,7 +11,7 @@ var (
 	// RolesColumns holds the columns for the "roles" table.
 	RolesColumns = []*schema.Column{
 		{Name: "id", Type: field.TypeInt, Increment: true},
-		{Name: "code", Type: field.TypeString, Unique: true},
+		{Name: "code", Type: field.TypeInt, Unique: true},
 		{Name: "name", Type: field.TypeString},
 	}
 	// RolesTable holds the schema information for the "roles" table.

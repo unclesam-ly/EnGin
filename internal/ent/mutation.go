@@ -35,7 +35,8 @@ type RoleMutation struct {
 	op            Op
 	typ           string
 	id            *int
-	code          *string
+	code          *int
+	addcode       *int
 	name          *string
 	clearedFields map[string]struct{}
 	users         map[int]struct{}
@@ -145,12 +146,13 @@ func (m *RoleMutation) IDs(ctx context.Context) ([]int, error) {
 }
 
 // SetCode sets the "code" field.
-func (m *RoleMutation) SetCode(s string) {
-	m.code = &s
+func (m *RoleMutation) SetCode(i int) {
+	m.code = &i
+	m.addcode = nil
 }
 
 // Code returns the value of the "code" field in the mutation.
-func (m *RoleMutation) Code() (r string, exists bool) {
+func (m *RoleMutation) Code() (r int, exists bool) {
 	v := m.code
 	if v == nil {
 		return
@@ -161,7 +163,7 @@ func (m *RoleMutation) Code() (r string, exists bool) {
 // OldCode returns the old "code" field's value of the Role entity.
 // If the Role object wasn't provided to the builder, the object is fetched from the database.
 // An error is returned if the mutation operation is not UpdateOne, or the database query fails.
-func (m *RoleMutation) OldCode(ctx context.Context) (v string, err error) {
+func (m *RoleMutation) OldCode(ctx context.Context) (v int, err error) {
 	if !m.op.Is(OpUpdateOne) {
 		return v, errors.New("OldCode is only allowed on UpdateOne operations")
 	}
@@ -175,9 +177,28 @@ func (m *RoleMutation) OldCode(ctx context.Context) (v string, err error) {
 	return oldValue.Code, nil
 }
 
+// AddCode adds i to the "code" field.
+func (m *RoleMutation) AddCode(i int) {
+	if m.addcode != nil {
+		*m.addcode += i
+	} else {
+		m.addcode = &i
+	}
+}
+
+// AddedCode returns the value that was added to the "code" field in this mutation.
+func (m *RoleMutation) AddedCode() (r int, exists bool) {
+	v := m.addcode
+	if v == nil {
+		return
+	}
+	return *v, true
+}
+
 // ResetCode resets all changes to the "code" field.
 func (m *RoleMutation) ResetCode() {
 	m.code = nil
+	m.addcode = nil
 }
 
 // SetName sets the "name" field.
@@ -346,7 +367,7 @@ func (m *RoleMutation) OldField(ctx context.Context, name string) (ent.Value, er
 func (m *RoleMutation) SetField(name string, value ent.Value) error {
 	switch name {
 	case role.FieldCode:
-		v, ok := value.(string)
+		v, ok := value.(int)
 		if !ok {
 			return fmt.Errorf("unexpected type %T for field %s", value, name)
 		}
@@ -366,13 +387,21 @@ func (m *RoleMutation) SetField(name string, value ent.Value) error {
 // AddedFields returns all numeric fields that were incremented/decremented during
 // this mutation.
 func (m *RoleMutation) AddedFields() []string {
-	return nil
+	var fields []string
+	if m.addcode != nil {
+		fields = append(fields, role.FieldCode)
+	}
+	return fields
 }
 
 // AddedField returns the numeric value that was incremented/decremented on a field
 // with the given name. The second boolean return value indicates that this field
 // was not set, or was not defined in the schema.
 func (m *RoleMutation) AddedField(name string) (ent.Value, bool) {
+	switch name {
+	case role.FieldCode:
+		return m.AddedCode()
+	}
 	return nil, false
 }
 
@@ -381,6 +410,13 @@ func (m *RoleMutation) AddedField(name string) (ent.Value, bool) {
 // type.
 func (m *RoleMutation) AddField(name string, value ent.Value) error {
 	switch name {
+	case role.FieldCode:
+		v, ok := value.(int)
+		if !ok {
+			return fmt.Errorf("unexpected type %T for field %s", value, name)
+		}
+		m.AddCode(v)
+		return nil
 	}
 	return fmt.Errorf("unknown Role numeric field %s", name)
 }

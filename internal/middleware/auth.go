@@ -5,6 +5,7 @@ import (
 	"EnGin/internal/ent/user"
 	"EnGin/internal/global"
 	"EnGin/internal/service/redis_ser"
+	"EnGin/internal/utils/ctype"
 	"EnGin/internal/utils/jwts"
 	"EnGin/internal/utils/res"
 	"fmt"
@@ -63,7 +64,7 @@ func AuthAdmin(c *gin.Context) {
 	// 遍历用户的角色列表，检查是否有 "admin" 角色代码
 	isAdmin := false
 	for _, role := range u.Edges.Roles {
-		if role.Code == "admin" {
+		if role.Code == ctype.Admin {
 			isAdmin = true
 			break
 		}

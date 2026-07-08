@@ -18,7 +18,7 @@ func init() {
 	// roleDescCode is the schema descriptor for code field.
 	roleDescCode := roleFields[0].Descriptor()
 	// role.CodeValidator is a validator for the "code" field. It is called by the builders before save.
-	role.CodeValidator = roleDescCode.Validators[0].(func(string) error)
+	role.CodeValidator = roleDescCode.Validators[0].(func(int) error)
 	// roleDescName is the schema descriptor for name field.
 	roleDescName := roleFields[1].Descriptor()
 	// role.NameValidator is a validator for the "name" field. It is called by the builders before save.

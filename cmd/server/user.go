@@ -5,6 +5,7 @@ import (
 	"EnGin/internal/ent"
 	"EnGin/internal/ent/role"
 	"EnGin/internal/global"
+	"EnGin/internal/utils/ctype"
 	"EnGin/internal/utils/pwd"
 	"bufio"
 	"context"
@@ -52,14 +53,14 @@ var userCreateCmd = &cobra.Command{
 
 		// 尝试查询 admin 角色
 		adminRole, err := db.Client.Role.Query().
-			Where(role.CodeEQ("admin")).
+			Where(role.CodeEQ(ctype.Admin)).
 			Only(ctx)
 
 		if err != nil {
 			if ent.IsNotFound(err) {
 				// 如果不存在 admin 角色，自动创建
 				adminRole, err = db.Client.Role.Create().
-					SetCode("admin").
+					SetCode(ctype.Admin).
 					SetName("超级管理员").
 					Save(ctx)
 				if err != nil {

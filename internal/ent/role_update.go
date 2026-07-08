@@ -29,16 +29,23 @@ func (_u *RoleUpdate) Where(ps ...predicate.Role) *RoleUpdate {
 }
 
 // SetCode sets the "code" field.
-func (_u *RoleUpdate) SetCode(v string) *RoleUpdate {
+func (_u *RoleUpdate) SetCode(v int) *RoleUpdate {
+	_u.mutation.ResetCode()
 	_u.mutation.SetCode(v)
 	return _u
 }
 
 // SetNillableCode sets the "code" field if the given value is not nil.
-func (_u *RoleUpdate) SetNillableCode(v *string) *RoleUpdate {
+func (_u *RoleUpdate) SetNillableCode(v *int) *RoleUpdate {
 	if v != nil {
 		_u.SetCode(*v)
 	}
+	return _u
+}
+
+// AddCode adds value to the "code" field.
+func (_u *RoleUpdate) AddCode(v int) *RoleUpdate {
+	_u.mutation.AddCode(v)
 	return _u
 }
 
@@ -152,7 +159,10 @@ func (_u *RoleUpdate) sqlSave(ctx context.Context) (_node int, err error) {
 		}
 	}
 	if value, ok := _u.mutation.Code(); ok {
-		_spec.SetField(role.FieldCode, field.TypeString, value)
+		_spec.SetField(role.FieldCode, field.TypeInt, value)
+	}
+	if value, ok := _u.mutation.AddedCode(); ok {
+		_spec.AddField(role.FieldCode, field.TypeInt, value)
 	}
 	if value, ok := _u.mutation.Name(); ok {
 		_spec.SetField(role.FieldName, field.TypeString, value)
@@ -223,16 +233,23 @@ type RoleUpdateOne struct {
 }
 
 // SetCode sets the "code" field.
-func (_u *RoleUpdateOne) SetCode(v string) *RoleUpdateOne {
+func (_u *RoleUpdateOne) SetCode(v int) *RoleUpdateOne {
+	_u.mutation.ResetCode()
 	_u.mutation.SetCode(v)
 	return _u
 }
 
 // SetNillableCode sets the "code" field if the given value is not nil.
-func (_u *RoleUpdateOne) SetNillableCode(v *string) *RoleUpdateOne {
+func (_u *RoleUpdateOne) SetNillableCode(v *int) *RoleUpdateOne {
 	if v != nil {
 		_u.SetCode(*v)
 	}
+	return _u
+}
+
+// AddCode adds value to the "code" field.
+func (_u *RoleUpdateOne) AddCode(v int) *RoleUpdateOne {
+	_u.mutation.AddCode(v)
 	return _u
 }
 
@@ -376,7 +393,10 @@ func (_u *RoleUpdateOne) sqlSave(ctx context.Context) (_node *Role, err error) {
 		}
 	}
 	if value, ok := _u.mutation.Code(); ok {
-		_spec.SetField(role.FieldCode, field.TypeString, value)
+		_spec.SetField(role.FieldCode, field.TypeInt, value)
+	}
+	if value, ok := _u.mutation.AddedCode(); ok {
+		_spec.AddField(role.FieldCode, field.TypeInt, value)
 	}
 	if value, ok := _u.mutation.Name(); ok {
 		_spec.SetField(role.FieldName, field.TypeString, value)

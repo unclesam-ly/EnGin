@@ -21,7 +21,7 @@ type RoleCreate struct {
 }
 
 // SetCode sets the "code" field.
-func (_c *RoleCreate) SetCode(v string) *RoleCreate {
+func (_c *RoleCreate) SetCode(v int) *RoleCreate {
 	_c.mutation.SetCode(v)
 	return _c
 }
@@ -124,7 +124,7 @@ func (_c *RoleCreate) createSpec() (*Role, *sqlgraph.CreateSpec) {
 		_spec = sqlgraph.NewCreateSpec(role.Table, sqlgraph.NewFieldSpec(role.FieldID, field.TypeInt))
 	)
 	if value, ok := _c.mutation.Code(); ok {
-		_spec.SetField(role.FieldCode, field.TypeString, value)
+		_spec.SetField(role.FieldCode, field.TypeInt, value)
 		_node.Code = value
 	}
 	if value, ok := _c.mutation.Name(); ok {
