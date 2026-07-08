@@ -1,6 +1,7 @@
 package main
 
 import (
+	"EnGin/internal/cron"
 	"EnGin/internal/db"
 	"EnGin/internal/global"
 	"EnGin/internal/server"
@@ -32,6 +33,10 @@ var serverCmd = &cobra.Command{
 		if err != nil {
 			global.Log.Fatal("初始化 Casbin 失败", zap.Error(err))
 		}
+
+		// 初始化定时任务
+		cron.InitCron()
+		defer cron.Stop()
 
 		// 启动 Gin 服务
 		server.Run()
