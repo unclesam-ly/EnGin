@@ -10,4 +10,5 @@ func RegisterRoutes(r *gin.Engine) {
 	g := r.Group("api/v1")
 	AuthRouter(g)
 	UserRouter(g)
+	CasbinRouter(g)
 }
