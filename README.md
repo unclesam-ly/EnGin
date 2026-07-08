@@ -18,6 +18,8 @@ A production-ready Go backend project scaffolding based on **Ent ORM + Gin + Cob
 * **Database**: Supported MySQL and PostgreSQL.
 * **Cache / Token Blacklist**: Redis integration (go-redis/v9) for logout blacklisting.
 * **Authentication**: Dual-token (Access Token & Refresh Token) authentication.
+* **RBAC & Authorization**: Integrated [Casbin](https://casbin.org/) for robust, policy-based access control.
+* **Cron Tasks**: Built-in scheduled task module for running background jobs.
 * **Type-Safe Binding**: Generic HTTP request binding & auto-validation middleware.
 * **Structured Logs**: Zap logger + Lumberjack log rotation with project-level prefixes.
 
@@ -37,8 +39,10 @@ EnGin/
 ├── internal/
 │   ├── api/                 # API controllers (grouped by domain)
 │   │   ├── auth_api/        # Authentication API (login, token refresh)
+│   │   ├── casbin_api/      # Casbin policy management API
 │   │   └── user_api/        # User management API
 │   ├── conf/                # Viper config mapping definitions
+│   ├── cron/                # Scheduled background tasks
 │   ├── db/                  # DB connection pool (Ent & Redis initialization)
 │   ├── ent/                 # Ent generated ORM files
 │   │   └── schema/          # Ent schema definitions (models)
@@ -108,6 +112,8 @@ go run cmd/server/*.go server
 * **配置管理**：[Viper](https://github.com/spf13/viper) - 支持 YAML 映射与动态热加载。
 * **缓存与注销**：集成 Redis (go-redis/v9)，支持基于黑名单的 Token 安全注销。
 * **安全鉴权**：支持双 Token (Access Token & Refresh Token) 安全刷新机制。
+* **权限控制**：集成 [Casbin](https://casbin.org/) 提供基于策略的灵活 RBAC/ABAC 权限控制。
+* **定时任务**：内置解耦的定时任务 (Cron) 模块，支持后台任务管理。
 * **强类型绑定**：内置基于 Go 泛型（Generics）的请求绑定与自动参数校验中间件。
 * **工程日志**：基于 Zap + Lumberjack 自动滚动归档，且支持按配置自动添加项目日志前缀。
 
@@ -127,8 +133,10 @@ EnGin/
 ├── internal/
 │   ├── api/                 # API 控制器层（按业务模块划分）
 │   │   ├── auth_api/        # 鉴权相关接口 (登录、刷新Token)
+│   │   ├── casbin_api/      # Casbin 权限策略管理接口
 │   │   └── user_api/        # 用户管理接口
 │   ├── conf/                # 配置映射结构体定义
+│   ├── cron/                # 后台定时任务模块
 │   ├── db/                  # 数据库连接池（Ent 和 Redis 连接初始化）
 │   ├── ent/                 # Ent 框架生成的底层 CRUD 代码
 │   │   └── schema/          # Schema 模型定义（数据表结构声明处）
@@ -198,6 +206,8 @@ go run cmd/server/*.go server
 * **設定管理**: [Viper](https://github.com/spf13/viper) - YAML 設定ファイルのマッピングとホットリロードのサポート。
 * **キャッシュ / ログアウト**: Redis (go-redis/v9) によるログアウト Token ブラックリスト管理。
 * **認証**: デュアルトークン (Access Token & Refresh Token) による安全な認証スキーム。
+* **アクセス制御**: [Casbin](https://casbin.org/) を統合し、ポリシーベースの堅牢な RBAC 権限管理を提供。
+* **定期タスク**: バックグラウンドジョブを実行するための Cron タスクモジュールを内蔵。
 * **型安全バインディング**: Go のジェネリクス（Generics）を活用したリクエスト解析＆自動バリデーションミドルウェア。
 * **ログ記録**: Zap + Lumberjack ログローテーション、プロジェクト固有のログプレフィックス設定対応。
 
@@ -217,8 +227,10 @@ EnGin/
 ├── internal/
 │   ├── api/                 # API コントローラ層（ビジネスドメイン別）
 │   │   ├── auth_api/        # 認証関連 API (ログイン、トークン更新)
+│   │   ├── casbin_api/      # Casbin ポリシー管理 API
 │   │   └── user_api/        # ユーザー管理 API
 │   ├── conf/                # 設定ファイルの構造体マッピング定義
+│   ├── cron/                # 定期実行タスク (Cron) モジュール
 │   ├── db/                  # データベース接続プール（Ent と Redis の初期化）
 │   ├── ent/                 # Ent 生成コード
 │   │   └── schema/          # テーブルモデル定義（スキーマ定義場所）
