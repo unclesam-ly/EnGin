@@ -23,8 +23,8 @@ func LoadConfig(path string) (*Config, error) {
 		return nil, fmt.Errorf("读取配置文件失败: %w", err)
 	}
 
-	var cfg Config
-	if err := v.Unmarshal(&cfg); err != nil {
+	cfg := &Config{}
+	if err := v.Unmarshal(cfg); err != nil {
 		return nil, fmt.Errorf("解析配置文件失败: %w", err)
 	}
 
@@ -32,7 +32,12 @@ func LoadConfig(path string) (*Config, error) {
 	v.WatchConfig()
 	v.OnConfigChange(func(e fsnotify.Event) {
 		fmt.Printf("配置文件已更新: %s\n", e.Name)
+		if err := v.Unmarshal(cfg); err != nil {
+			fmt.Printf("重载配置文件失败: %s\n", err)
+		} else {
+			fmt.Println("🚀 配置热重载成功，新配置已即时生效！")
+		}
 	})
 
-	return &cfg, nil
+	return cfg, nil
 }
