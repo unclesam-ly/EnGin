@@ -4,12 +4,12 @@ import "fmt"
 
 // DatabaseConfig 定义数据库连接配置结构体
 type DatabaseConfig struct {
-	Driver   string `mapstructure:"driver" yaml:"driver"`
-	Host     string `mapstructure:"host" yaml:"host"`
-	Port     int    `mapstructure:"port" yaml:"port"`
-	User     string `mapstructure:"user" yaml:"user"`
-	Password string `mapstructure:"password" yaml:"password"`
-	Dbname   string `mapstructure:"dbname" yaml:"dbname"`
+	Driver   string `yaml:"driver"`
+	Host     string `yaml:"host"`
+	Port     int    `yaml:"port"`
+	User     string `yaml:"user"`
+	Password string `yaml:"password"`
+	Dbname   string `yaml:"dbname"`
 }
 
 // Dsn 根据 driver 动态生成 DSN 字符串

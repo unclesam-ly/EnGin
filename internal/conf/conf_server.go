@@ -1,8 +1,8 @@
 package conf
 
 type ServerConfig struct {
-	Port         int      `mapstructure:"port" yaml:"port"`
-	Mode         string   `mapstructure:"mode" yaml:"mode"` // debug / release
-	AllowOrigins []string `mapstructure:"allow_origins" yaml:"allow_origins"`
-	Version      string   `mapstructure:"mode" yaml:"version"`
+	Port         int      `yaml:"port"`
+	Mode         string   `yaml:"mode"` // debug / release
+	AllowOrigins []string `yaml:"allow_origins"`
+	Version      string   `yaml:"version"`
 }
