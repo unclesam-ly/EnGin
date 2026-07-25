@@ -22,6 +22,6 @@ func (db DatabaseConfig) Dsn() string {
 		return fmt.Sprintf("host=%s port=%d user=%s password=%s dbname=%s sslmode=disable",
 			db.Host, db.Port, db.User, db.Password, db.Dbname)
 	default:
-		return ""
+		return fmt.Sprintf("数据库支持:postgresql/mysql,当前:%s", db.Driver)
 	}
 }
