@@ -1,4 +1,4 @@
-package service
+package user_ser
 
 import (
 	"EnGin/internal/db"
